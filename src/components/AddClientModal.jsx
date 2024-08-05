@@ -1,27 +1,18 @@
 import { Modal, Form, Input, InputNumber, message } from "antd";
-import { v4 as uuidv4 } from "uuid";
+import { addClient } from "../services/clients.service";
 
 export default function AddCleintModal({ onClose, isOpen }) {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
-  // Manejar el evento cuando se presiona el botón de Ok
   const handleOk = () => {
-    form.validateFields().then((values) => {
-      const uuid = uuidv4(); // Genera un UUID único para cada cliente
-      const newClient = {
-        id: uuid,
-        key: uuid,
-        name: values.name,
-        age: values.age,
-        address: values.address,
-        email: values.email,
-        phone: values.phone,
-      };
-
-      // Guardar el nuevo cliente en localStorage
-      const existingClients = JSON.parse(localStorage.getItem("clients")) || [];
-      existingClients.push(newClient);
-      localStorage.setItem("clients", JSON.stringify(existingClients));
+    form.validateFields().then(async (values) => {
+      messageApi.open({
+        type: 'loading',
+        content: 'Guardando cliente...',
+        duration: 0,
+      });
+      await addClient(values);
+      messageApi.destroy();
       messageApi.open({
         type: 'success',
         content: `Cliente ${values.name} guardado correctamente`,
@@ -47,7 +38,6 @@ export default function AddCleintModal({ onClose, isOpen }) {
       okText="Guardar"
     >
       {contextHolder}
-      <p>Contenido del modal</p>
       <Form form={form}>
         <Form.Item
           label="Nombre"
