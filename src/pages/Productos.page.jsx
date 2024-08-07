@@ -1,7 +1,28 @@
+import React, { useState } from "react";
+import { Button } from "antd";
+import { ProductsTable } from "../components/Tables";
+import { getProducts } from "../services/products.service";
+import AddProductModal from "../components/AddProductModal";
+
 const ProductosPage = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const dataSource = getProducts();
   return (
     <div>
-      <h1>Productos</h1>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <h2>Lista de Clientes</h2>
+        <Button type="primary" onClick={() => setModalOpen(true)}>
+          Agregar Producto
+        </Button>
+      </div>
+      <ProductsTable dataSource={dataSource} />
+      <AddProductModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 };

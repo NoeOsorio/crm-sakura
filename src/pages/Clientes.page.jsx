@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddClientModal from "../components/AddClientModal"; // Import the AddClientModal component
 import { Button } from "antd";
 import { getClients } from "../services/clients.service";
-import { ClientsTable } from "../components/Tables/ClientsTable";
+import { ClientsTable } from "../components/Tables";
 
 const ClientesPage = () => {
   const [modalOpen, setModalOpen] = useState(false);

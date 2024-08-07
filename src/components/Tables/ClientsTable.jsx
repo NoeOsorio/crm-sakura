@@ -1,5 +1,5 @@
 import { Table } from "antd";
-const columns = [
+const clientColumns = [
   {
     title: "Nombre",
     dataIndex: "name",
@@ -28,5 +28,5 @@ const columns = [
 ];
 
 export function ClientsTable({ dataSource }) {
-  return <Table columns={columns} dataSource={dataSource} />;
+  return <Table columns={clientColumns} dataSource={dataSource} />;
 }
