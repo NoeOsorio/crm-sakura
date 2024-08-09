@@ -16,7 +16,7 @@ const ProductosPage = () => {
           justifyContent: "space-between",
         }}
       >
-        <h2>Lista de Clientes</h2>
+        <h2>Lista de Productos</h2>
         <Button type="primary" onClick={() => setModalOpen(true)}>
           Agregar Producto
         </Button>

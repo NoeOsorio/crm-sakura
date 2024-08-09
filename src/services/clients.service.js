@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+import Cliente from "../models/cliente.model";
 
 export function getClients() {
   return localStorage.getItem("clients")
@@ -7,19 +7,14 @@ export function getClients() {
 }
 
 export function addClient(client) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const uuid = uuidv4(); // Genera un UUID único para cada cliente
-      const newClient = {
-        id: uuid,
-        key: uuid,
-        name: client.name,
-        age: client.age,
-        address: client.address,
-        email: client.email,
-        phone: client.phone,
-      };
-
+      const newClient = new Cliente(client);
+      try {
+        newClient.validate();
+      } catch (error) {
+        reject(error);
+      }
       // Guardar el nuevo cliente en localStorage
       const existingClients = getClients();
       existingClients.push(newClient);

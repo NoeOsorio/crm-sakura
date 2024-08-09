@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+import Product from "../models/product.model";
 
 export function getProducts() {
   return localStorage.getItem("products")
@@ -7,18 +7,14 @@ export function getProducts() {
 }
 
 export function addProduct(product) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-        const uuid = uuidv4(); 
-      const newProduct = {
-        id: uuid,
-        key: uuid,
-        name: product.name,
-        price: product.price,
-        description: product.description,
-        category: product.category,
-      };
-
+      const newProduct = new Product(product);
+      try {
+        newProduct.validate();
+      } catch (error) {
+        reject(error);
+      }
       // Guardar el nuevo cliente en localStorage
       const existingProducts = getProducts();
       existingProducts.push(newProduct);

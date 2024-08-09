@@ -8,22 +8,32 @@ export default function AddProductModal({ onClose, isOpen }) {
     form
       .validateFields()
       .then(async (values) => {
-        messageApi.open({
-          type: "loading",
-          content: "Guardando producto...",
-          duration: 0,
-        });
-        await addProduct(values);
-        messageApi.destroy();
-        messageApi.open({
-          type: "success",
-          content: `${values.name} guardado correctamente`,
-        });
-        onClose(); // Cerrar el modal después de guardar
-        form.resetFields(); // Resetear el formulario
+        try {
+          messageApi.open({
+            type: "loading",
+            content: "Guardando producto...",
+            duration: 0,
+          });
+          await addProduct(values);
+          messageApi.destroy();
+          messageApi.open({
+            type: "success",
+            content: `${values.name} guardado correctamente`,
+          });
+          onClose(); // Cerrar el modal después de guardar
+          form.resetFields(); // Resetear el formulario
+        } catch (error) {
+          messageApi.destroy();
+          messageApi.open({
+            type: "error",
+            content: error.message,
+          });
+        }
+   
       })
       .catch((errorInfo) => {
-        console.log("Error al guardar el producto:", errorInfo);
+        console.error("Error al guardar el producto:", errorInfo);
+        messageApi.destroy();
         messageApi.open({
           type: "error",
           content: "Algo salió mal, por favor intente de nuevo",

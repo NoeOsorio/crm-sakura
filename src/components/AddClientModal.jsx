@@ -6,6 +6,7 @@ export default function AddCleintModal({ onClose, isOpen }) {
   const [messageApi, contextHolder] = message.useMessage();
   const handleOk = () => {
     form.validateFields().then(async (values) => {
+     try {
       messageApi.open({
         type: 'loading',
         content: 'Guardando cliente...',
@@ -19,7 +20,15 @@ export default function AddCleintModal({ onClose, isOpen }) {
       });
       onClose(); // Cerrar el modal después de guardar
       form.resetFields(); // Resetear el formulario
+     } catch (error) {
+      messageApi.destroy();
+      messageApi.open({
+        type: 'error',
+        content: error.message,
+      });
+     }
     }).catch((errorInfo) => {
+      messageApi.destroy();
       console.log("Error al guardar el cliente:", errorInfo);
       messageApi.open({
         type: 'error',
