@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "antd";
 import { ProductsTable } from "../components/Tables";
 import { getProducts } from "../services/products.service";
-import AddProductModal from "../components/AddProductModal";
+import { AddProductModal } from "../components/AddModals";
 
 const ProductosPage = () => {
   const [modalOpen, setModalOpen] = useState(false);

@@ -1,7 +1,7 @@
 import { Modal, Form, Input, InputNumber, message } from "antd";
-import { addClient } from "../services/clients.service";
+import { addClient } from "../../services/clients.service";
 
-export default function AddCleintModal({ onClose, isOpen }) {
+export default function AddClientModal({ onClose, isOpen }) {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const handleOk = () => {

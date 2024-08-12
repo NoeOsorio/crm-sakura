@@ -1,5 +1,5 @@
 import { Modal, Form, Input, InputNumber, message } from "antd";
-import { addProduct } from "../services/products.service";
+import { addProduct } from "../../services/products.service";
 
 export default function AddProductModal({ onClose, isOpen }) {
   const [form] = Form.useForm();

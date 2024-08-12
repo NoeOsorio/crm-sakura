@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import AddClientModal from "../components/AddClientModal"; // Import the AddClientModal component
+import { AddClientModal } from "../components/AddModals"; // Import the AddClientModal component
 import { Button } from "antd";
 import { getClients } from "../services/clients.service";
 import { ClientsTable } from "../components/Tables";
 
 const ClientesPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const dataSource  = getClients();
+  const dataSource = getClients();
   return (
     <div>
       <div
@@ -21,7 +21,7 @@ const ClientesPage = () => {
           Agregar Cliente
         </Button>
       </div>
-        <ClientsTable dataSource={dataSource} />
+      <ClientsTable dataSource={dataSource} />
       <AddClientModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
