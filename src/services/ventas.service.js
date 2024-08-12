@@ -9,7 +9,9 @@ export function getVentas() {
 export function addVenta(venta) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+      console.log("Adding venta", venta);
       const newVenta = new Venta(venta);
+      console.log("New venta", newVenta); 
       try {
         newVenta.validate();
       } catch (error) {

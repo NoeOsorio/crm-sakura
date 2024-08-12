@@ -5,5 +5,6 @@ export default class Parent {
     const uuid = uuidv4();
     this.id = uuid;
     this.key = uuid;
+    this.fechaCreacion = new Date().toLocaleDateString();
   }
 }

@@ -1,4 +1,7 @@
 import Parent from "./parent.model";
+import moment from "moment";
+import { Tag } from "antd";
+import { getClients } from "../services/clients.service";
 
 export class Venta extends Parent {
   constructor({
@@ -7,7 +10,6 @@ export class Venta extends Parent {
     total,
     fechaInicio,
     fechaPago,
-    fechaCreacion,
     pagado,
     entregado,
   }) {
@@ -17,53 +19,75 @@ export class Venta extends Parent {
     this.total = total;
     this.fechaInicio = fechaInicio;
     this.fechaPago = fechaPago;
-    this.fechaCreacion = fechaCreacion;
     this.pagado = pagado;
     this.entregado = entregado;
 
   }
 
   static get columns() {
+    const clientes = getClients();
     return [
       {
         title: "Cliente",
-        dataIndex: "cliente",
+        dataIndex: "cliente", // Asumiendo que en tu data la clave es clienteId
         key: "cliente",
+        render: (clienteId) => {
+          console.log(clienteId);
+          console.log(clientes);
+          const cliente = clientes.find(c => c.id === clienteId);
+          return cliente ? cliente.name : "Desconocido";
+        },
       },
-      {
-        title: "Productos",
-        dataIndex: "productos",
-        key: "productos",
-      },
+      // {
+      //   title: "Productos",
+      //   dataIndex: "productos",
+      //   key: "productos",
+      // },
       {
         title: "Total",
         dataIndex: "total",
         key: "total",
+        render: (text) => `$ ${text.toLocaleString()}`,
       },
       {
         title: "Fecha de Inicio",
         dataIndex: "fechaInicio",
         key: "fechaInicio",
+        render: (text) => text ?  moment(text).format("DD/MM/YYYY") : "",
       },
       {
         title: "Fecha de Pago",
         dataIndex: "fechaPago",
         key: "fechaPago",
+        render: (text) => text ?  moment(text).format("DD/MM/YYYY"): "",
       },
       {
         title: "Fecha de Creación",
         dataIndex: "fechaCreacion",
         key: "fechaCreacion",
+        render: (text) => text ? moment(text).format("DD/MM/YYYY") : "",
       },
       {
         title: "Pagado",
         dataIndex: "pagado",
         key: "pagado",
+        render: (paid) =>
+          paid ? (
+            <Tag color="green">Sí</Tag>
+          ) : (
+            <Tag color="red">No</Tag>
+          ),
       },
       {
         title: "Entregado",
         dataIndex: "entregado",
         key: "entregado",
+        render: (delivered) =>
+          delivered ? (
+            <Tag color="green">Sí</Tag>
+          ) : (
+            <Tag color="red">No</Tag>
+          ),
       },
     ];
   }
@@ -77,21 +101,6 @@ export class Venta extends Parent {
     }
     if (!this.total) {
       throw new Error("El total es requerido");
-    }
-    if (!this.pagado) {
-      throw new Error("El campo pagado es requerido");
-    }
-    if (!this.fechaInicio) {
-      throw new Error("La fecha de inicio es requerida");
-    }
-    if (this.pagado && !this.fechaPago) {
-      throw new Error("La fecha de pago es requerida");
-    }
-    if (!this.fechaCreacion) {
-      throw new Error("La fecha de creación es requerida");
-    }
-    if (!this.entregado) {
-      throw new Error("El campo entregado es requerido");
     }
   }
 }
