@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CRM Sakura 🌸
 
-## Available Scripts
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 
-In the project directory, you can run:
+Un sistema de gestión de relaciones con clientes (CRM) desarrollado bajo la marca **Sakura Academy**.
 
-### `npm start`
+![Logo](public/logo.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</div>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Descripción
 
-### `npm test`
+**CRM Sakura** es una aplicación web diseñada para ayudar a las empresas a gestionar de manera eficiente sus relaciones con clientes, centralizando información de contacto, historial de interacciones y oportunidades de ventas en una única plataforma.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🌟 Características
 
-### `npm run build`
+- **Gestión de Contactos**: Almacena y organiza la información de tus clientes.
+- **Historial de Interacciones**: Registra todas las interacciones con cada cliente.
+- **Oportunidades de Venta**: Gestiona y sigue el progreso de las oportunidades de ventas.
+- **Panel de Control**: Visualiza estadísticas y métricas clave en un panel de control interactivo.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📸 Capturas de Pantalla
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="public/img/ss1.png" alt="Contacts Management" width="300" />
+<img src="public/img/ss2.png" alt="Products Management" width="300" />
+<img src="public/img/ss3.png" alt="Sales Pipeline" width="300" />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 💻 Tecnologías Utilizadas
 
-### `npm run eject`
+- **React**: Para la interfaz de usuario interactiva y dinámica.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ⚙️ Configuración del Proyecto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Para configurar y ejecutar este proyecto en tu entorno de desarrollo:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clona el repositorio:
+    ```bash
+    git clone https://github.com/NoeOsorio/crm-sakura.git
+    ```
+2. Navega al directorio del proyecto:
+    ```bash
+    cd crm-sakura
+    ```
+3. Instala las dependencias necesarias:
+    ```bash
+    npm install
+    ```
+4. Configura las variables de entorno en un archivo `.env` basado en el archivo `.env.example`.
+5. Inicia el servidor:
+    ```bash
+    npm start
+    ```
+6. Accede a la aplicación en tu navegador:
+    ```
+    http://localhost:3000
+    ```
 
-## Learn More
+## 📝 Licencia
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🤝 Contribuir
 
-### Code Splitting
+Si deseas contribuir a este proyecto, te invitamos a realizar un pull request o enviar un correo a [business@noeosorio.com](mailto:business@noeosorio.com).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Desarrollado por [Noe Osorio](https://noeosorio.com)
