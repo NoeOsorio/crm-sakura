@@ -1,12 +1,27 @@
-import React, { useState } from "react";
-import { AddClientModal } from "../components/AddModals"; // Import the AddClientModal component
+import React, { useState, useEffect } from "react";
+import { AddClientModal } from "../components/AddModals";
 import { Button } from "antd";
 import { getClients } from "../services/clients.service";
 import { ClientsTable } from "../components/Tables";
 
 const ClientesPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const dataSource = getClients();
+  const [dataSource, setDataSource] = useState([]);
+
+  const actualizarDatos = () => {
+    const clientes = getClients();
+    setDataSource(clientes);
+  };
+
+  useEffect(() => {
+    actualizarDatos();
+  }, []);
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+    actualizarDatos();
+  };
+
   return (
     <div>
       <div
@@ -22,7 +37,7 @@ const ClientesPage = () => {
         </Button>
       </div>
       <ClientsTable dataSource={dataSource} />
-      <AddClientModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <AddClientModal isOpen={modalOpen} onClose={handleModalClose} />
     </div>
   );
 };

@@ -1,53 +1,68 @@
-import { Modal, Form, Input, InputNumber, message } from "antd";
-import { addClient } from "../../services/clients.service";
+import { Modal, Form, Input, InputNumber, message} from "antd";
+import { addClient, updateClient } from "../../services/clients.service";
 
-export default function AddClientModal({ onClose, isOpen }) {
+export default function ClientModal({ onClose, isOpen, clientToEdit }) {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
+  const isEditing = !!clientToEdit;
+
   const handleOk = () => {
     form.validateFields().then(async (values) => {
      try {
       messageApi.open({
         type: 'loading',
-        content: 'Guardando cliente...',
+        content: isEditing ? 'Actualizando cliente...' : 'Guardando cliente...',
         duration: 0,
       });
-      await addClient(values);
+      
+      if (isEditing) {
+        await updateClient({ ...clientToEdit, ...values });
+      } else {
+        await addClient(values);
+      }
+
       messageApi.destroy();
       messageApi.open({
         type: 'success',
-        content: `Cliente ${values.name} guardado correctamente`,
+        content: isEditing
+          ? `Cliente ${values.name} actualizado correctamente`
+          : `Cliente ${values.name} guardado correctamente`,
       });
-      onClose(); // Cerrar el modal después de guardar
-      form.resetFields(); // Resetear el formulario
+      onClose();
+      form.resetFields();
      } catch (error) {
       messageApi.destroy();
       messageApi.open({
         type: 'error',
         content: error.message,
       });
+     } finally {
+      form.resetFields();
      }
     }).catch((errorInfo) => {
       messageApi.destroy();
-      console.log("Error al guardar el cliente:", errorInfo);
+      console.log("Error al procesar el cliente:", errorInfo);
       messageApi.open({
         type: 'error',
         content: 'Algo salió mal, por favor intente de nuevo',
       });
+      form.resetFields();
     });
   };
-
+ 
   return (
     <Modal
-      title="Nuevo Cliente"
-      onCancel={onClose}
-      onClose={onClose}
+      title={isEditing ? "Editar Cliente" : "Nuevo Cliente"}
+      onCancel={() => {
+        onClose();
+        form.resetFields();
+      }}
       onOk={handleOk}
       open={isOpen}
-      okText="Guardar"
+      okText={isEditing ? "Actualizar" : "Guardar"}
     >
       {contextHolder}
-      <Form form={form}>
+      <Form form={form} initialValues={clientToEdit}>
         <Form.Item
           label="Nombre"
           name="name"
