@@ -12,7 +12,7 @@ import {
   Divider,
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { getProducts } from "../services/products.service";
+import { getProductsDB } from "../services/products.service";
 import { getClients } from "../services/clients.service";
 import { addVenta } from "../services/ventas.service";
 
@@ -24,8 +24,8 @@ export default function VentasForm({ onClose, isOpen }) {
   const clients = useMemo(() => {
     return getClients();
   }, []);
-  const products = useMemo(() => {
-    return getProducts();
+  const products = useMemo(async () => {
+    return await getProductsDB();
   }, []);
   const [total, setTotal] = useState(0);
 

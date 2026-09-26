@@ -29,7 +29,7 @@ export default function AddClientModal({ onClose, isOpen }) {
      }
     }).catch((errorInfo) => {
       messageApi.destroy();
-      console.log("Error al guardar el cliente:", errorInfo);
+      console.error("Error al guardar el cliente:", errorInfo);
       messageApi.open({
         type: 'error',
         content: 'Algo salió mal, por favor intente de nuevo',
