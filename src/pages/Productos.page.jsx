@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import { ProductsTable } from "../components/Tables";
-import { getProducts } from "../services/products.service";
+import {
+  getProductsDB,
+  getProductsFromFirestore,
+} from "../services/products.service";
 import { AddProductModal } from "../components/AddModals";
 
 const ProductosPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const dataSource = getProducts();
+  const [dataSource, setDataSource] = useState([]);
+  useEffect(() => {
+    // getProductsFromFirestore().then((products) => {
+    //   console.log(products[0]);
+    //   setDataSource(products);
+    // });
+    const unsuscribe = getProductsDB((products) => {
+      setDataSource(products);
+    });
+    return () => unsuscribe && unsuscribe();
+  }, []);
   return (
     <div>
       <div

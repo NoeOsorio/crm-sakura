@@ -7,6 +7,7 @@ import { ClientsTable } from "../components/Tables";
 const ClientesPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const dataSource = getClients();
+
   return (
     <div>
       <div

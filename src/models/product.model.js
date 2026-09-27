@@ -1,8 +1,8 @@
 import Parent from "./parent.model";
 
 class Product extends Parent {
-  constructor({name, price, description, category}) {
-    super();
+  constructor({name, price, description, category, id}) {
+    super(id);
     this.name = name;
     this.price = price;
     this.description = description;
@@ -47,6 +47,16 @@ class Product extends Parent {
     if (!this.category) {
       throw new Error("Por favor ingrese la categoría del producto");
     }
+  }
+
+  toObject() {
+    return {
+      name: this.name,
+      price: this.price,
+      description: this.description,
+      category: this.category,
+      creationDate: this.creationDate,
+    };
   }
 }
 

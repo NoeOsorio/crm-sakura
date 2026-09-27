@@ -38,7 +38,6 @@ const LayoutPage = ({ children }) => {
 
   useEffect(() => {
     const item = navItems.find((item) => item.key === location.pathname);
-    console.log(item);
     if (item) {
       setSelectedTitle(item.label);
     }else{
@@ -49,8 +48,6 @@ const LayoutPage = ({ children }) => {
   const handleMenuClick = ({ key }) => {
     navigate(key); // Cambiar la URL al seleccionar un item
   };
-  //   const [selectedItem, setSelectedItem] = useState("1");
-  //   console.log(selectedItem);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
